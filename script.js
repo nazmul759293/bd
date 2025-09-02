@@ -1,52 +1,27 @@
-* {
-  margin: 0; padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-body {
-  background: #EFEFE9;
-  color: #223030;
-  line-height: 1.6;
-}
-section {
-  padding: 100px 8%;
-}
-header {
-  position: fixed; top: 0; left: 0; right: 0;
-  display: flex; justify-content: space-between; align-items: center;
-  background: rgba(239,239,233,0.95);
-  padding: 15px 8%;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-.logo { font-weight: bold; font-size: 1.5rem; color: #223030; text-decoration: none; }
-.navlist { display: flex; gap: 20px; }
-.navlist li a { color: #223030; text-decoration: none; font-weight: 500; }
-.navlist li a.active { color: #523D35; border-bottom: 2px solid #523D35; }
+// particles.js setup
+particlesJS('particles-js', {
+  particles: {
+    number: { value: 60 },
+    color: { value: "#523D35" },
+    line_linked: { enable: true, color: "#959D90" },
+    move: { enable: true }
+  }
+});
 
-.home {
-  min-height: 100vh; display: flex; align-items: center; justify-content: space-between;
-  background: linear-gradient(135deg, #EFEFE9, #BBA58F);
-}
-.hero-info h1 span { color: #523D35; }
-.btn {
-  background: linear-gradient(135deg, #223030, #523D35);
-  color: #fff; padding: 10px 20px; border-radius: 30px;
-  text-decoration: none; display: inline-block; margin: 10px 5px;
-}
-.btn-outline {
-  background: transparent; border: 2px solid #223030; color: #223030;
-}
-.img-hero img {
-  width: 300px; border-radius: 50%;
-}
-.main-text { text-align: center; margin-bottom: 40px; }
-.heading { font-size: 2rem; color: #223030; }
-.contact-form {
-  max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 15px;
-}
-.contact-form input, .contact-form textarea {
-  padding: 10px; border: 1px solid #ccc; border-radius: 5px;
-}
-footer {
-  background: #223030; color: #EFEFE9; text-align: center; padding: 20px;
-                              }
+// Scroll progress
+window.addEventListener('scroll', () => {
+  const winScroll = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById("progressBar").style.width = (winScroll / height) * 100 + "%";
+});
+
+// Back to top
+const backToTop = document.querySelector('.back-to-top');
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) backToTop.classList.add('active');
+  else backToTop.classList.remove('active');
+});
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// Footer year
+document.getElementById('year').textContent = new Date().getFullYear();
