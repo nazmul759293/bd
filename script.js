@@ -1,160 +1,52 @@
+* {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background: #EFEFE9;
+  color: #223030;
+  line-height: 1.6;
+}
+section {
+  padding: 100px 8%;
+}
+header {
+  position: fixed; top: 0; left: 0; right: 0;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(239,239,233,0.95);
+  padding: 15px 8%;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.logo { font-weight: bold; font-size: 1.5rem; color: #223030; text-decoration: none; }
+.navlist { display: flex; gap: 20px; }
+.navlist li a { color: #223030; text-decoration: none; font-weight: 500; }
+.navlist li a.active { color: #523D35; border-bottom: 2px solid #523D35; }
 
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Scroll progress bar
-        window.onscroll = function() { updateProgressBar() };
-
-        function updateProgressBar() {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-        }
-
-        // Toggle menu
-        const menuIcon = document.querySelector(".menu-icon");
-        const navlist = document.querySelector(".navlist");
-        
-        menuIcon.addEventListener("click", () => {
-            menuIcon.classList.toggle("active");
-            navlist.classList.toggle("active");
-        });
-
-        // Remove navlist when clicking on a link
-        document.querySelectorAll('.navlist a').forEach(link => {
-            link.addEventListener('click', () => {
-                navlist.classList.remove("active");
-                menuIcon.classList.remove("active");
-            });
-        });
-
-        // About section tabs
-        const buttons = document.querySelectorAll('.about-btn button');
-        const contents = document.querySelectorAll('.content-btn .content');
-        
-        buttons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                contents.forEach(content => content.style.display = 'none');
-                contents[index].style.display = 'block';
-                buttons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-            });
-        });
-
-        // File preview functionality
-        const modal = document.getElementById("previewModal");
-        const previewFrame = document.getElementById("previewFrame");
-        const previewBtns = document.querySelectorAll(".preview-btn");
-        const closeModal = document.querySelector(".close-modal");
-        
-        previewBtns.forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                e.preventDefault();
-                const filePath = btn.getAttribute("data-file");
-                previewFrame.src = filePath;
-                modal.style.display = "block";
-            });
-        });
-        
-        closeModal.addEventListener("click", () => {
-            modal.style.display = "none";
-            previewFrame.src = "";
-        });
-        
-        window.addEventListener("click", (e) => {
-            if (e.target == modal) {
-                modal.style.display = "none";
-                previewFrame.src = "";
-            }
-        });
-
-        // Scroll reveal animation
-        function reveal() {
-            var reveals = document.querySelectorAll(".skill-category, .portfolio-box, .download-card, .timeline-item, .education-content, .detail-box");
-            
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        
-        // Back to top button
-        const backToTopButton = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('active');
-            } else {
-                backToTopButton.classList.remove('active');
-            }
-            reveal();
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Initialize reveal on page load
-        reveal();
-
-        // Animate skill bars on scroll
-        function animateSkillBars() {
-            const skillLevels = document.querySelectorAll('.skill-level');
-            skillLevels.forEach(level => {
-                const width = level.style.width;
-                level.style.width = '0';
-                setTimeout(() => {
-                    level.style.width = width;
-                }, 200);
-            });
-        }
-
-        // Intersection Observer for skill bars animation
-        const skillsSection = document.getElementById('skills');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateSkillBars();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        if (skillsSection) {
-            observer.observe(skillsSection);
-        }
-
-        // Add smooth scrolling to all links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+.home {
+  min-height: 100vh; display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(135deg, #EFEFE9, #BBA58F);
+}
+.hero-info h1 span { color: #523D35; }
+.btn {
+  background: linear-gradient(135deg, #223030, #523D35);
+  color: #fff; padding: 10px 20px; border-radius: 30px;
+  text-decoration: none; display: inline-block; margin: 10px 5px;
+}
+.btn-outline {
+  background: transparent; border: 2px solid #223030; color: #223030;
+}
+.img-hero img {
+  width: 300px; border-radius: 50%;
+}
+.main-text { text-align: center; margin-bottom: 40px; }
+.heading { font-size: 2rem; color: #223030; }
+.contact-form {
+  max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 15px;
+}
+.contact-form input, .contact-form textarea {
+  padding: 10px; border: 1px solid #ccc; border-radius: 5px;
+}
+footer {
+  background: #223030; color: #EFEFE9; text-align: center; padding: 20px;
+                              }
